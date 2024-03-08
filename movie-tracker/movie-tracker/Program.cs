@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using movie_tracker.Data;
+
 namespace movie_tracker
 {
     public class Program
@@ -8,6 +11,8 @@ namespace movie_tracker
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            builder.Services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
             var app = builder.Build();
 
